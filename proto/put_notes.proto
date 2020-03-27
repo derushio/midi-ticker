@@ -4,8 +4,8 @@ message PutNotes {
     message Note {
         // noteの配列id
         int32 id = 1;
-        // 前のNoteからの実行時間 (millisec)
-        int64 deltaTime = 2;
+        // 前のNoteからの実行待ち時間
+        int32 deltaMicrosec = 2;
     }
 
     repeated Note notes = 1;
