@@ -1,7 +1,11 @@
 package main
 
-import "./ticker"
+import (
+	"./protoserver"
+	"./ticker"
+)
 
 func main() {
+	protoserver.Serve()
 	ticker.Ticker()
 }
