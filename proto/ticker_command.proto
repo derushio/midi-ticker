@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message TickerCommand {
+    enum Command {
+        STOP = 0;
+        PLAY = 1;
+        PAUSE = 2;
+        CLEAR = 3;
+    }
+
+    Command command = 1;
+}
