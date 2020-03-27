@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message FireNote {
+    message Note {
+        // noteの配列id
+        int32 id = 1;
+    }
+
+    int32 note_id = 1;
+}
