@@ -2,6 +2,7 @@ package ticker
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -19,9 +20,11 @@ func average(xs []int64) int64 {
 }
 
 func Ticker() {
+	var quit = make(chan struct{})
+
 	var notes []Note
 	for i := 0; i < 100; i++ {
-		notes = append(notes, Note{int32(i), int64(100)})
+		notes = append(notes, Note{int32(i), int64(100 * 1000)})
 	}
 
 	ticker := time.NewTicker(time.Millisecond)
@@ -50,14 +53,14 @@ func Ticker() {
 
 					if len(notes)-1 <= index {
 						ticker.Stop()
-						fmt.Println(string(average(laptimes)) + "microsec")
+						fmt.Println(strconv.Itoa(int(average(laptimes))) + "[usec]")
 						fmt.Println("Ticker stopped")
-						break
+						close(quit)
 					}
 				}
 			}
 		}
 	}()
 
-	time.Sleep(100000000000000000)
+	<-quit
 }
